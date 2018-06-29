@@ -30,3 +30,4 @@ class BinarySearchTree(object):
     def inOrderTraversal(self):
         if self.rootNode:
             self.rootNode.inOrderTraversal()
+    
