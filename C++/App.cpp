@@ -9,5 +9,8 @@ int main(int argc, char* argv[])
     for(int i=0;i<20;i++)
         tree.insert(i);
     tree.traverseInOrder();
+    cout<<endl;
+    tree.remove(10);
+    tree.traverseInOrder();
     return 0;
 }

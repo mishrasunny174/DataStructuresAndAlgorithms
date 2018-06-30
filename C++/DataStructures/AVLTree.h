@@ -54,6 +54,17 @@ class AVLTree
         }
     }
 
+    void remove(D data)
+    {
+        if(root == 0)
+        {
+            std::cerr<<"ERROR: tree is empty"<<std::endl;
+        }
+        else
+        {
+            this->root = this->remove(this->root, data);
+        }
+    }
   protected:
     Node<D> *insert(Node<D> *node, D data)
     {
@@ -143,6 +154,44 @@ class AVLTree
             if (node->rightChild != 0)
                 this->traverseInOrder(node->rightChild);
         }
+    }
+
+    Node<D> *remove(Node<D> *node, D data)
+    {
+        if(data < node->data)
+        {
+            node->leftChild = this->remove(node->leftChild, data);
+        }
+        else if(data > node->data)
+        {
+            node->rightChild = this->remove(node->rightChild, data);
+        }
+        else
+        {
+            if (node->leftChild == 0)
+            {
+                node = node->rightChild;
+            }
+            else if(node->rightChild == 0)
+            {
+                node = node->leftChild;
+            }
+            else
+            {
+                node->data = this->getMaximum(node->leftChild);
+                node->leftChild = this->remove(node->leftChild, node->data);
+            }
+        }
+        if(node != 0)
+            node = this->balanceTree(node);
+        return node;
+    }
+
+    D getMaximum(Node<D> *node)
+    {
+        if(node->rightChild == 0)
+            return node->data;
+        return this->getMaximum(node->rightChild);
     }
 };
 
