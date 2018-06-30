@@ -1,4 +1,7 @@
 {
     "python.pythonPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\Python36_64\\python.exe",
-    "files.autoSave": "onWindowChange"
+    "files.autoSave": "onWindowChange",
+    "files.associations": {
+        "cmath": "cpp"
+    }
 }
