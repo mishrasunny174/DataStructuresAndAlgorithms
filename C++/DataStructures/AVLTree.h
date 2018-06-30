@@ -34,6 +34,10 @@ class AVLTree
     {
         root = 0;
     }
+    ~AVLTree()
+    {
+        this->removeAllNodes(Node<D> * node);
+    }
     void insert(D data)
     {
         if (this->root == 0)
@@ -56,15 +60,16 @@ class AVLTree
 
     void remove(D data)
     {
-        if(root == 0)
+        if (root == 0)
         {
-            std::cerr<<"ERROR: tree is empty"<<std::endl;
+            std::cerr << "ERROR: tree is empty" << std::endl;
         }
         else
         {
             this->root = this->remove(this->root, data);
         }
     }
+
   protected:
     Node<D> *insert(Node<D> *node, D data)
     {
@@ -95,7 +100,7 @@ class AVLTree
             {
                 node = this->rotateLeft(node);
             }
-            else if(node->rightChild->balance==-1)
+            else if (node->rightChild->balance == -1)
             {
                 node->rightChild = this->rotateRight(node->rightChild);
                 node = this->rotateLeft(node);
@@ -107,7 +112,7 @@ class AVLTree
             {
                 node = this->rotateRight(node);
             }
-            else if(node->leftChild->balance == 1)
+            else if (node->leftChild->balance == 1)
             {
                 node->leftChild = this->rotateLeft(node->leftChild);
                 node = this->rotateRight(node);
@@ -158,11 +163,11 @@ class AVLTree
 
     Node<D> *remove(Node<D> *node, D data)
     {
-        if(data < node->data)
+        if (data < node->data)
         {
             node->leftChild = this->remove(node->leftChild, data);
         }
-        else if(data > node->data)
+        else if (data > node->data)
         {
             node->rightChild = this->remove(node->rightChild, data);
         }
@@ -172,7 +177,7 @@ class AVLTree
             {
                 node = node->rightChild;
             }
-            else if(node->rightChild == 0)
+            else if (node->rightChild == 0)
             {
                 node = node->leftChild;
             }
@@ -182,16 +187,28 @@ class AVLTree
                 node->leftChild = this->remove(node->leftChild, node->data);
             }
         }
-        if(node != 0)
+        if (node != 0)
             node = this->balanceTree(node);
         return node;
     }
 
     D getMaximum(Node<D> *node)
     {
-        if(node->rightChild == 0)
+        if (node->rightChild == 0)
             return node->data;
         return this->getMaximum(node->rightChild);
+    }
+
+    void removeAllNode(Node<D> *node)
+    {
+        if (node != 0)
+        {
+            if (node->leftChild != 0)
+                this->removeAllNode(node->leftChild);
+            if (node->rightChild != 0)
+                this->removeAllNode(node->rightChild);
+            delete node;
+        }
     }
 };
 

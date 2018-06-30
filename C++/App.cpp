@@ -1,16 +1,18 @@
 #include <iostream>
-#include "DataStructures/AVLTree.h"
+#include "DataStructures/Heap.h"
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-    AVLTree<int> tree;
-    for(int i=0;i<20;i++)
-        tree.insert(i);
-    tree.traverseInOrder();
+    MaxHeap<int> heap(10);
+    heap.insert(2);
+    heap.insert(30);
+    heap.insert(40);
+    heap.insert(10);
+    heap.printHeap();
     cout<<endl;
-    tree.remove(10);
-    tree.traverseInOrder();
+    cout<<heap.getMax()<<endl;
+    heap.printHeap();
     return 0;
 }
