@@ -4,22 +4,22 @@ class MaxHeap(object):
         self.currentPosition = -1
 
     def insert(self, data):
-        self.currentPosition += 1
-        self.heap[self.currentPosition] = data
-        self.fixUp()
-
-    def fixUp(self):
         if not self.isFull():
-            index = self.currentPosition
-            parentIndex = int((index-1)/2)
-            while parentIndex >= 0 and self.heap[index] > self.heap[parentIndex]:
-                temp = self.heap[index]
-                self.heap[index] = self.heap[parentIndex]
-                self.heap[parentIndex] = temp
-                index = parentIndex
-                parentIndex = int((index-1)/2)
+            self.currentPosition += 1
+            self.heap[self.currentPosition] = data
+            self.fixUp()
         else:
             print('ERROR: heap is full')
+
+    def fixUp(self):
+        index = self.currentPosition
+        parentIndex = int((index-1)/2)
+        while parentIndex >= 0 and self.heap[index] > self.heap[parentIndex]:
+            temp = self.heap[index]
+            self.heap[index] = self.heap[parentIndex]
+            self.heap[parentIndex] = temp
+            index = parentIndex
+            parentIndex = int((index-1)/2)
 
     def isFull(self):
         if self.currentPosition < len(self.heap):
