@@ -3,6 +3,7 @@
 
 #include<exception>
 #include<string>
+#include<iostream>
 
 class StackEmptyException : public std::exception
 {
@@ -30,13 +31,13 @@ class Stack
 public:
     Stack()
     {
-        this->size = 64;
+        this->size = 2;
         this->array = new T[size];
         this->topIndex = -1;
     }
 
     void push(T data){
-        if(this->topIndex < this->size)
+        if(this->topIndex < this->size-1)
         {
             this->array[++topIndex] = data;
         }
@@ -51,18 +52,21 @@ public:
             delete[] this->array;
             this->array = temp;
             this->size = tempSize;
+            this->array[++topIndex] = data;
         }
     }
 
-    T top() throw(std::exception)
+    T top() throw(StackEmptyException)
     {
         if(topIndex<0){
             throw StackEmptyException("ERROR: Stack is empty");           
         } 
+        // std::cout<<"DEBUG: "<<topIndex<<std::endl;
         return this->array[topIndex];
+        
     }
 
-    void pop() throw(std::exception)
+    void pop() throw(StackEmptyException)
     {
         if(topIndex<0){
             throw StackEmptyException("ERROR: Stack is empty");           

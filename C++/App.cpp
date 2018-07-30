@@ -18,7 +18,7 @@ int main(int argc, char* argv[])
             stck.pop();
         }
     } catch (StackEmptyException e) {
-        //cout<<e.getMsg()<<endl;
+        cout<<e.getMsg()<<endl;
     }
     return 0;
 }
