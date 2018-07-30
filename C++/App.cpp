@@ -1,5 +1,5 @@
 #include <iostream>
-#include "DataStructures/Stack.h"
+#include "DataStructures/StackArray.h"
 
 using namespace std;
 
@@ -17,8 +17,8 @@ int main(int argc, char* argv[])
             cout<<stck.top()<<endl;
             stck.pop();
         }
-    } catch (StackEmptyException see) {
-        cout<<see.getMsg()<<endl;
+    } catch (StackEmptyException e) {
+        //cout<<e.getMsg()<<endl;
     }
     return 0;
 }

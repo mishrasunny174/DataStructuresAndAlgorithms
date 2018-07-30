@@ -95,7 +95,7 @@ class Stack
         node<T> *temp = head;
         while (head != 0)
             {
-                *head = *head->next;
+                head = head->next;
                 delete temp;
                 temp = head;
             }
