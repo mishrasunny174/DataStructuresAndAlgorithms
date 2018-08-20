@@ -50,13 +50,16 @@ class LinkedList
         size = 0;
     }
 
-    ~LinkedList(){
+    ~LinkedList()
+    {
         Node<T> *temp = head;
-        while(head != 0){
+        while (head != 0)
+        {
             head = head->getNext();
             delete temp;
             temp = head;
-        }    }
+        }
+    }
 
     void pushAtHead(T data)
     {
