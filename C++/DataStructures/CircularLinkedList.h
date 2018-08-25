@@ -45,7 +45,8 @@ class CircularList
     }
 
     ~CircularList()
-    {   if(this->head!=0)
+    {
+        if (this->head != 0)
         {
             while (this->head != 0)
             {
@@ -154,10 +155,10 @@ class CircularList
         node<T> *temp = this->head;
         do
         {
-            std::cout<<temp->data<<" -> ";
+            std::cout << temp->data << " -> ";
             temp = temp->next;
-        }while(temp!=this->head);
-        std::cout<<" to head"<<std::endl;
+        } while (temp != this->head);
+        std::cout << " to head" << std::endl;
     }
 };
 
