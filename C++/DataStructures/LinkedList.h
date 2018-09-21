@@ -6,15 +6,10 @@ class Node
 {
   private:
     T data;
-    Node *next;
+    Node<T> *next;
 
   public:
-    Node()
-    {
-        data = 0;
-        next = 0;
-    }
-    Node(T data, Node *next = 0)
+    Node(T data=0, Node<T>* next=0)
     {
         this->data = data;
         this->next = next;

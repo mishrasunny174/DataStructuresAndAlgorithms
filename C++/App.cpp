@@ -1,25 +1,29 @@
 #include <iostream>
-#include "DataStructures/CircularLinkedList.h"
+#include "DataStructures/QueueArray.h"
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
-    CircularList<int> list;
-    list.insertAtHead(10);
-    list.insertAtTail(20);
-    list.insertAtHead(30);
-    list.display();
+    Queue<int> queue;
+    queue.enqueue(10);
+    queue.enqueue(11);
+    queue.enqueue(12);
+    queue.enqueue(13);
+    queue.enqueue(14);
+    queue.enqueue(15);
+    queue.enqueue(45);
     try
     {
         while (true)
         {
-            cout<<"Deleted "<<list.atHead()<<endl;
-            list.deleteFromHead();
+            cout << queue.front() << endl;
+            queue.dequeue();
         }
     }
-    catch (ListEmptyException lee)
+    catch (QueueUnderflowException e)
     {
-        cerr << lee.getMsg();
+        cout << e.getMsg() << endl;
     }
+    return 0;
 }
