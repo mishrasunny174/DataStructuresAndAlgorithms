@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     queue.enqueue(13);
     queue.enqueue(14);
     queue.enqueue(15);
-    queue.enqueue(45);
     try
     {
         while (true)
