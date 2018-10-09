@@ -10,8 +10,16 @@ int main(int argc, char *argv[])
     map.insert("Sunny", 10);
     map.insert("Mishra", 20);
     map.insert("asdfgh", 40);
-    int get = map.get("Sunny");
-    cout << get << endl;
+    try
+    {
+        int get = map.get("Sunny");
+        cout << get << endl;
+        map.remove("MISHRA");
+    }
+    catch (ElementNotFoundException e)
+    {
+        cout << e.what() << endl;
+    }
     map.traverse();
     return 0;
 }

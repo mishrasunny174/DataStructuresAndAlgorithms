@@ -105,6 +105,21 @@ class HashMap
         }
     }
 
+    void remove(K key) throw(ElementNotFoundException)
+    {
+        int location = this->hash(key);
+        while (hasValue[location])
+        {
+            if (this->keys[location] == key)
+            {
+                this->hasValue[location] = false;
+                return;
+            }
+            location = (location + 1) % this->size;
+        }
+        ElementNotFoundException e;
+        throw e;
+    }
   protected:
     void reHashTable() //rehashing all the elements in the table and also doubling the size of the table
     {
