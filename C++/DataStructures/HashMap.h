@@ -24,7 +24,7 @@ class HashMap
     bool *hasValue;
 
   public:
-    HashMap(int initSize = 16)
+    HashMap(int initSize = 2)
     {
         this->size = initSize;
         this->numOfElements = 0;
@@ -65,22 +65,17 @@ class HashMap
 
     void insert(K key, V value)
     {
-        if (this->numOfElements == this->size)
-        {
+        if (this->numOfElements >= this->size)
             this->reHashTable(); //if max size is reached rehashing table and also doubling its size
-            this->insert(key, value);
-        }
-        else
+        int location = this->hash(key);
+        while (this->hasValue[location]) //performing linear probing
         {
-            int location = this->hash(key);
-            while (this->hasValue[location]) //performing linear probing
-            {
-                location = (location + 1) % this->size;
-            }
-            this->keys[location] = key;
-            this->values[location] = value;
-            this->hasValue[location] = true;
+            location = (location + 1) % this->size;
         }
+        this->keys[location] = key;
+        this->values[location] = value;
+        this->hasValue[location] = true;
+        this->numOfElements++;
     }
 
     V get(K key) throw(std::exception)
@@ -103,8 +98,8 @@ class HashMap
             if (this->hasValue[i])
             {
                 std::cout << "Hash: " << i
-                          << " Key: " << this->keys[i]
-                          << " Value: " << this->values[i]
+                          << "; Key: " << this->keys[i]
+                          << "; Value: " << this->values[i]
                           << std::endl;
             }
         }
